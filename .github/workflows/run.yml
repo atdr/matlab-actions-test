@@ -1,0 +1,20 @@
+name: Run MATLAB
+on: [push]
+jobs:
+  my-job:
+    name: Run MATLAB script & generate artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Install MATLAB
+        uses: matlab-actions/setup-matlab@v0
+      - name: Run script
+        uses: matlab-actions/run-command@v1
+        with:
+          command: test
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: output
+          path: ./
